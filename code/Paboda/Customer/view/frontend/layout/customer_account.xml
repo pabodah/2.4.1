@@ -8,6 +8,15 @@
                 <arguments>
                     <argument name="path" xsi:type="string">customer/custom/index</argument>
                     <argument name="label" xsi:type="string">My Custom Tab MENU ITEM</argument>
+                    <argument name="sortOrder" xsi:type="number">10</argument>
+                </arguments>
+            </block>
+            <block class="Paboda\Customer\Block\Customer\Tab\ManageCompanyCustomer"
+                   name="customer-account-navigation-manage-company">
+                <arguments>
+                    <argument name="path" xsi:type="string">customer/company/index</argument>
+                    <argument name="label" xsi:type="string" translate="true">Manage My Company</argument>
+                    <argument name="sortOrder" xsi:type="number">20</argument>
                 </arguments>
             </block>
         </referenceBlock>
