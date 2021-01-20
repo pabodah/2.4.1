@@ -12,7 +12,8 @@
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template"
                    name="my_tab"
-                   template="Paboda_Customer::mytab.phtml">
+                   template="Paboda_Customer::mytab.phtml"
+                   cacheable="false">
             </block>
         </referenceContainer>
     </body>

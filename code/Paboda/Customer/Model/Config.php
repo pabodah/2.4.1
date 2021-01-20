@@ -1,23 +1,23 @@
 <?php
 namespace Paboda\Customer\Model;
 
-use Magento\Customer\Model\SessionFactory as CustomerSession;
 use Paboda\Customer\Model\Config\Source\CompanyAccountValue;
+use Magento\Customer\Model\Session;
 
 class Config
 {
     /**
-     * @var CustomerSession
+     * @var Session
      */
     protected $customerSession;
 
     /**
      * Config constructor.
      *
-     * @param CustomerSession $customerSession
+     * @param Session $customerSession
      */
     public function __construct(
-        CustomerSession $customerSession
+        Session $customerSession
     ) {
         $this->customerSession = $customerSession;
     }
@@ -29,12 +29,12 @@ class Config
     public function isCompanyAccount($customer = null)
     {
         if ($customer == null) {
-            $customer = $this->customerSession->create();
+            $customer = $this->customerSession->getCustomer();
         }
         if ($customer instanceof \Magento\Customer\Model\Customer) {
             $companyAccountAttr = $customer->getData('is_company_account');
         } else {
-            $companyAccountAttr = $customer->getCustomer()->getIsCompanyAccount();
+            $companyAccountAttr = $customer->getCustomAttribute('is_company_account');
         }
         if ($companyAccountAttr) {
             return is_string($companyAccountAttr) ?
