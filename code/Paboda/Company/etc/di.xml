@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Paboda\Company\Api\Data\GridInterface" type="Paboda\Company\Model\Company" />
+    <preference for="Paboda\Company\Api\Data\CompanyInterface" type="Paboda\Company\Model\Company" />
+    <preference for="Paboda\Company\Api\CompanyRepositoryInterface" type="Paboda\Company\Model\CompanyRepository"/>
 
     <virtualType name="Paboda\Company\Model\ResourceModel\Company\Company\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">

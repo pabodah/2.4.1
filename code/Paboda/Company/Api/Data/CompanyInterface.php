@@ -1,7 +1,7 @@
 <?php
 namespace Paboda\Company\Api\Data;
 
-interface GridInterface
+interface CompanyInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
     const ID = 'id';
     const CUSTOMER_ID = 'customer_id';

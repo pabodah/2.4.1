@@ -1,10 +1,10 @@
 <?php
 namespace Paboda\Company\Model;
 
-use Paboda\Company\Api\Data\GridInterface;
+use Paboda\Company\Api\Data\CompanyInterface;
 use Magento\Framework\Model\AbstractModel;
 
-class Company extends AbstractModel implements GridInterface
+class Company extends AbstractModel implements CompanyInterface
 {
     /**
      * CMS page cache tag.
