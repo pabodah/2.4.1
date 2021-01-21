@@ -1,0 +1,13 @@
+{
+    "paboda_company": {
+        "column": {
+            "id": true,
+            "customer_id": true,
+            "company_name": true,
+            "company_logo": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
