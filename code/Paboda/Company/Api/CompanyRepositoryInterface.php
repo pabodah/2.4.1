@@ -4,16 +4,9 @@ namespace Paboda\Company\Api;
 interface CompanyRepositoryInterface
 {
     /**
-     * @param $data
+     * @param Data\CompanyInterface $company
      * @return mixed
      */
-    /*public function saveCompanyData($data);*/
-
-    /**
-     * @return mixed
-     */
-    /*public function filterCompanyData();*/
-
     public function save(
         \Paboda\Company\Api\Data\CompanyInterface $company
     );

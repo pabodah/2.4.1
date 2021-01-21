@@ -22,6 +22,8 @@ class Collection extends AbstractCollection
     }
 
     /**
+     * Get company by customer Id
+     *
      * @param $customer_id
      * @return Collection
      */

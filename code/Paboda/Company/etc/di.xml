@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Paboda\Company\Api\Data\CompanyInterface" type="Paboda\Company\Model\Company" />
     <preference for="Paboda\Company\Api\CompanyRepositoryInterface" type="Paboda\Company\Model\CompanyRepository"/>
 
@@ -23,7 +25,7 @@
         <plugin name="add-company" type="Paboda\Company\Plugin\Customer\Model\Customer\CompanyDataProvider"/>
     </type>
 
-    <virtualType name="Paboda\Company\HelloWorldImageUpload" type="Paboda\Company\Model\ImageUploader">
+    <virtualType name="Paboda\Company\CompanyImageUpload" type="Paboda\Company\Model\ImageUploader">
         <arguments>
             <argument name="baseTmpPath" xsi:type="string">customer_company/tmp</argument>
             <argument name="basePath" xsi:type="string">customer_company</argument>
@@ -37,7 +39,7 @@
     </virtualType>
     <type name="Paboda\Company\Controller\Adminhtml\Index\Upload">
         <arguments>
-            <argument name="imageUploader" xsi:type="object">Paboda\Company\HelloWorldImageUpload</argument>
+            <argument name="imageUploader" xsi:type="object">Paboda\Company\CompanyImageUpload</argument>
         </arguments>
     </type>
 </config>

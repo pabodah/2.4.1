@@ -1,21 +1,12 @@
 <?php
 namespace Paboda\Company\Model;
 
-use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
-use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
-use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\Reflection\DataObjectProcessor;
-use Magento\Store\Model\StoreManagerInterface;
-use Paboda\Company\Api\Data\CompanyInterfaceFactory;
 use Paboda\Company\Api\CompanyRepositoryInterface;
-use Paboda\Company\Model\CompanyFactory as CompanyFactory;
+use Paboda\Company\Api\Data\CompanyInterface;
 use Paboda\Company\Model\ResourceModel\Company as ResourceCompany;
-use Paboda\Company\Model\ResourceModel\Company\CollectionFactory as CompanyCollectionFactory;
 
 class CompanyRepository implements CompanyRepositoryInterface
 {
@@ -24,10 +15,23 @@ class CompanyRepository implements CompanyRepositoryInterface
      */
     protected $extensibleDataObjectConverter;
 
+    /**
+     * @var CompanyFactory
+     */
     protected $companyFactory;
 
+    /**
+     * @var ResourceCompany
+     */
     protected $resource;
 
+    /**
+     * CompanyRepository constructor.
+     *
+     * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * @param CompanyFactory $companyFactory
+     * @param ResourceCompany $resource
+     */
     public function __construct(
         ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         CompanyFactory $companyFactory,
@@ -38,13 +42,18 @@ class CompanyRepository implements CompanyRepositoryInterface
         $this->resource = $resource;
     }
 
+    /**
+     * @param CompanyInterface $company
+     * @return mixed
+     * @throws CouldNotSaveException
+     */
     public function save(
-        \Paboda\Company\Api\Data\CompanyInterface $company
+        CompanyInterface $company
     ) {
         $companyData = $this->extensibleDataObjectConverter->toNestedArray(
             $company,
             [],
-            \Paboda\Company\Api\Data\CompanyInterface::class
+            CompanyInterface::class
         );
 
         $companyModel = $this->companyFactory->create()->setData($companyData);
@@ -60,12 +69,19 @@ class CompanyRepository implements CompanyRepositoryInterface
         return $companyModel->getDataModel();
     }
 
+    /**
+     * Get Company by Customer
+     *
+     * @param $customer
+     * @return mixed
+     * @throws NoSuchEntityException
+     */
     public function getByCustomer($customer)
     {
         $company = $this->companyFactory->create();
         $this->resource->load($company, $customer, 'customer_id');
         if (!$company->getId()) {
-            throw new NoSuchEntityException(__('Variation with the name "%1" exists.', $customer));
+            return null;
         }
         return $company->getId();
     }

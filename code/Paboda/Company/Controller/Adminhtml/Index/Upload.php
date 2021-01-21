@@ -2,26 +2,27 @@
 namespace Paboda\Company\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Controller\ResultInterface;
+use Paboda\Company\Model\ImageUploader;
 
 class Upload extends Action
 {
     /**
-     * Image uploader
-     *
-     * @var \Magento\Catalog\Model\ImageUploader
+     * @var ImageUploader
      */
     protected $imageUploader;
 
     /**
      * Upload constructor.
      *
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Catalog\Model\ImageUploader $imageUploader
+     * @param Context $context
+     * @param ImageUploader $imageUploader
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Paboda\Company\Model\ImageUploader $imageUploader
+        Context $context,
+        ImageUploader $imageUploader
     ) {
         parent::__construct($context);
         $this->imageUploader = $imageUploader;
@@ -40,7 +41,7 @@ class Upload extends Action
     /**
      * Upload file controller action
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return ResultInterface
      */
     public function execute()
     {
