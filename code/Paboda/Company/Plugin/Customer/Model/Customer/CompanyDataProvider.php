@@ -57,13 +57,18 @@ class CompanyDataProvider
 
         if (!empty($response)) {
             $customerCompanyArr = $this->customerCompany->getCompanyByCustomer($response[$id]['customer_id'])->getData();
+
             foreach ($customerCompanyArr as $arrItem) {
                 $arr['company_name'] = $arrItem['company_name'];
 
-                $img = [];
-                $img[0]['image'] = $arrItem['company_logo'];
-                $img[0]['url'] = $baseurl . 'customer_company/' . $arrItem['company_logo'];
-                $arr['company_logo'] = $img;
+                if ($arrItem['company_logo']) {
+                    $img = [];
+                    $img[0]['image'] = $arrItem['company_logo'];
+                    $img[0]['url'] = $baseurl . 'customer_company/' . $arrItem['company_logo'];
+                    $arr['company_logo'] = $img;
+                } else {
+                    $arr['company_logo'] = '';
+                }
             }
 
             if (isset($response[$id]['customer_id']) && isset($arr['company_name'])) {

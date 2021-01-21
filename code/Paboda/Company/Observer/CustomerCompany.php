@@ -77,31 +77,33 @@ class CustomerCompany implements ObserverInterface
 
                     $data['company_name'] = $customerCustomTab['company_name'];
 
-                    if (isset($customerCustomTab['company_logo'][0]['file'])) {
+                    /*if (isset($customerCustomTab['company_logo'][0]['file'])) {
                         $data['company_logo'] = $customerCustomTab['company_logo'][0]['file'];
                     } elseif (!isset($customerCustomTab['company_logo'])) {
                         $data['company_logo'] = null;
-                    }
+                    }*/
 
                     $this->companyInterface->setId($companyData);
                     $this->companyInterface->setCustomerId($customerId);
                     $this->companyInterface->setCompanyName($customerCustomTab['company_name']);
 
-                    if (isset($customerCustomTab['company_logo'][0]['file'])) {
-                        $this->companyInterface->setCompanyLogo($customerCustomTab['company_logo'][0]['file']);
-
+                    //if (isset($customerCustomTab['company_logo'][0]['file'])) {
                         if (isset($customerCustomTab['company_logo'][0]['name']) && isset($customerCustomTab['company_logo'][0]['tmp_name'])) {
-                            $data['image'] =$customerCustomTab['company_logo'][0]['name'];
+                            $data['image'] = $customerCustomTab['company_logo'][0]['name'];
                             $this->imageUploader = \Magento\Framework\App\ObjectManager::getInstance()->get(
                                 'Paboda\Company\CompanyImageUpload'
                             );
                             $this->imageUploader->moveFileFromTmp($data['image']);
-                        } elseif (isset($data['company_logo'][0]['image']) && !isset($data['status'][0]['tmp_name'])) {
-                            $data['image'] = $data['company_logo'][0]['image'];
+                        } elseif (isset($customerCustomTab['company_logo']) && !isset($data['company_logo'][0]['tmp_name'])) {
+                            $data['image'] = $customerCustomTab['company_logo'][0]['image'];
                         } else {
-                            $data['image'] = null;
+                            $data['image'] = '';
                         }
-                    }
+                    /*} else {
+                        $data['image'] = '';
+                    }*/
+
+                    $this->companyInterface->setCompanyLogo($data['image']);
 
                     $this->companyRepository->save($this->companyInterface);
                 }
