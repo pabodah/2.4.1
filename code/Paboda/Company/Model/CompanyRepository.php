@@ -1,6 +1,7 @@
 <?php
 namespace Paboda\Company\Model;
 
+use Magento\Customer\Model\Session;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -26,20 +27,28 @@ class CompanyRepository implements CompanyRepositoryInterface
     protected $resource;
 
     /**
+     * @var Session
+     */
+    protected $customerSession;
+
+    /**
      * CompanyRepository constructor.
      *
      * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter
      * @param CompanyFactory $companyFactory
      * @param ResourceCompany $resource
+     * @param Session $customerSession
      */
     public function __construct(
         ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         CompanyFactory $companyFactory,
-        ResourceCompany $resource
+        ResourceCompany $resource,
+        Session $customerSession
     ) {
         $this->extensibleDataObjectConverter = $extensibleDataObjectConverter;
         $this->companyFactory = $companyFactory;
         $this->resource = $resource;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -84,5 +93,18 @@ class CompanyRepository implements CompanyRepositoryInterface
             return null;
         }
         return $company->getId();
+    }
+
+    /**
+     * @return array|mixed|null
+     */
+    public function getDataByCustomer()
+    {
+        $company = $this->companyFactory->create();
+        $this->resource->load($company, $this->customerSession->getId(), 'customer_id');
+        if (!$company->getId()) {
+            return null;
+        }
+        return $company->getData();
     }
 }

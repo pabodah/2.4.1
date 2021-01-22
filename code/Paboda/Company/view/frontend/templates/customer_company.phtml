@@ -1,0 +1,32 @@
+<?php
+/**
+ * @var \Paboda\Company\Block\Company $block
+ */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$companyInfo = $block->getCustomerCompanyData();
+$logoPath = $block->getLogoPath();
+?>
+
+<div class="block block-company-info">
+    <div class="block-content">
+        <?php if (!empty($companyInfo)) : ?>
+            <div class="box box-information">
+                <div class="box-title">
+                    <span><?= $escaper->escapeHtml(__('Company Name')) ?></span>
+                    <div class="box-content">
+                        <?= $escaper->escapeHtml($companyInfo['company_name']) ?>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-information">
+                <div class="box-title">
+                    <span><?= $escaper->escapeHtml(__('Company Logo')) ?></span>
+                    <div class="box-content">
+                        <img src="<?= $escaper->escapeHtml($logoPath . $companyInfo['company_logo']) ?>" alt="company logo" />
+                    </div>
+                </div>
+            </div>
+        <?php endif ?>
+    </div>
+</div>
