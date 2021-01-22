@@ -4,29 +4,36 @@
  */
 /** @var \Magento\Framework\Escaper $escaper */
 
-$companyInfo = $block->getCustomerCompanyData();
+$companyInfo = $block->getCompanyData();
 $logoPath = $block->getLogoPath();
 ?>
 
 <div class="block block-company-info">
     <div class="block-content">
-        <?php if (!empty($companyInfo)) : ?>
-            <div class="box box-information">
-                <div class="box-title">
-                    <span><?= $escaper->escapeHtml(__('Company Name')) ?></span>
-                    <div class="box-content">
-                        <?= $escaper->escapeHtml($companyInfo['company_name']) ?>
+        <?php if (!empty($companyInfo)): ?>
+
+            <?php if ($companyInfo['company_name']): ?>
+                <div class="box box-information">
+                    <div class="box-title">
+                        <span><?= $escaper->escapeHtml(__('Company Name')) ?></span>
+                        <div class="box-content">
+                            <?= $escaper->escapeHtml($companyInfo['company_name']) ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="box box-information">
-                <div class="box-title">
-                    <span><?= $escaper->escapeHtml(__('Company Logo')) ?></span>
-                    <div class="box-content">
-                        <img src="<?= $escaper->escapeHtml($logoPath . $companyInfo['company_logo']) ?>" alt="company logo" />
+            <?php endif ?>
+
+            <?php if ($companyInfo['company_logo']): ?>
+                <div class="box box-information">
+                    <div class="box-title">
+                        <span><?= $escaper->escapeHtml(__('Company Logo')) ?></span>
+                        <div class="box-content">
+                            <img src="<?= $escaper->escapeHtml($logoPath . $companyInfo['company_logo']) ?>"
+                                 alt="company logo" />
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif ?>
         <?php endif ?>
     </div>
 </div>

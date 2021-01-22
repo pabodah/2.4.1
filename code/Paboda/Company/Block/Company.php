@@ -7,20 +7,12 @@ use Paboda\Company\Model\CompanyRepository;
 
 class Company extends Template
 {
-    /**
-     * @var \Magento\Framework\Data\Form\FormKey
-     */
-    protected $formKey;
+    const IMAGE_PATH = "customer_company";
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $_scopeConfig;
-
-    /**
-     * @var \Magento\Framework\UrlInterface
-     */
-    protected $_urlBuilder;
 
     /**
      * @var CompanyRepository
@@ -44,24 +36,24 @@ class Company extends Template
     }
 
     /**
-     * @return Company
-     */
-    public function _prepareLayout()
-    {
-        return parent::_prepareLayout();
-    }
-
-    /**
+     * Get company data
+     *
      * @return array|mixed|null
      */
-    public function getCustomerCompanyData()
+    public function getCompanyData()
     {
         return $this->companyData->getDataByCustomer();
     }
 
+    /**
+     * Get path for logo
+     *
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     public function getLogoPath()
     {
         $baseurl =  $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
-        return $baseurl . 'customer_company';
+        return $baseurl . self::IMAGE_PATH;
     }
 }

@@ -14,7 +14,7 @@
 			<column name="id"/>
 		</constraint>
 		<column name="customer_id" nullable="false" xsi:type="smallint"/>
-		<column name="company_name" nullable="false" xsi:type="text"/>
-		<column name="company_logo" nullable="false" xsi:type="text"/>
+		<column name="company_name" nullable="true" xsi:type="varchar" length="255"/>
+		<column name="company_logo" nullable="true" xsi:type="varchar" length="255"/>
 	</table>
 </schema>

@@ -72,9 +72,9 @@ class ImageUploader
      * @param UploaderFactory $uploaderFactory
      * @param StoreManagerInterface $storeManager
      * @param LoggerInterface $logger
-     * @param $baseTmpPath
-     * @param $basePath
-     * @param $allowedExtensions
+     * @param string $baseTmpPath
+     * @param string $basePath
+     * @param array $allowedExtensions
      * @throws \Magento\Framework\Exception\FileSystemException
      */
     public function __construct(

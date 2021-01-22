@@ -39,8 +39,10 @@ class CompanyDataProvider
     }
 
     /**
-     * @param $source
-     * @param $response
+     * Get data
+     *
+     * @param array $source
+     * @param array $response
      * @return mixed
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
@@ -56,7 +58,9 @@ class CompanyDataProvider
         $baseurl =  $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
 
         if (!empty($response)) {
-            $customerCompanyArr = $this->customerCompany->getCompanyByCustomer($response[$id]['customer_id'])->getData();
+            $customerCompanyArr = $this->customerCompany
+                ->getCompanyByCustomer($response[$id]['customer_id'])
+                ->getData();
 
             foreach ($customerCompanyArr as $arrItem) {
                 $arr['company_name'] = $arrItem['company_name'];

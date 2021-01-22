@@ -16,15 +16,15 @@ class Collection extends AbstractCollection
     protected function _construct()
     {
         $this->_init(
-            'Paboda\Company\Model\Company',
-            'Paboda\Company\Model\ResourceModel\Company'
+            \Paboda\Company\Model\Company::class,
+            \Paboda\Company\Model\ResourceModel\Company::class
         );
     }
 
     /**
      * Get company by customer Id
      *
-     * @param $customer_id
+     * @param integer $customer_id
      * @return Collection
      */
     public function getCompanyByCustomer($customer_id)

@@ -52,6 +52,8 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /**
+     * Save
+     *
      * @param CompanyInterface $company
      * @return mixed
      * @throws CouldNotSaveException
@@ -81,7 +83,7 @@ class CompanyRepository implements CompanyRepositoryInterface
     /**
      * Get Company by Customer
      *
-     * @param $customer
+     * @param integer $customer
      * @return mixed
      * @throws NoSuchEntityException
      */
@@ -96,6 +98,8 @@ class CompanyRepository implements CompanyRepositoryInterface
     }
 
     /**
+     * Get data by customer
+     *
      * @return array|mixed|null
      */
     public function getDataByCustomer()

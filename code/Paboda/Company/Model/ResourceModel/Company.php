@@ -12,19 +12,6 @@ class Company extends AbstractDb
     protected $_idFieldName = 'id';
 
     /**
-     * Company constructor.
-     *
-     * @param Context $context
-     * @param null $resourcePrefix
-     */
-    public function __construct(
-        Context $context,
-        $resourcePrefix = null
-    ) {
-        parent::__construct($context, $resourcePrefix);
-    }
-
-    /**
      * Constructor
      */
     protected function _construct()

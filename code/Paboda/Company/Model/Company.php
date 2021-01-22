@@ -28,10 +28,12 @@ class Company extends AbstractModel implements CompanyInterface
      */
     protected function _construct()
     {
-        $this->_init('Paboda\Company\Model\ResourceModel\Company');
+        $this->_init(\Paboda\Company\Model\ResourceModel\Company::class);
     }
 
     /**
+     * Get id
+     *
      * @return mixed
      */
     public function getId()
@@ -40,6 +42,8 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
+     * Set id
+     *
      * @param mixed $id
      * @return Company|AbstractModel|mixed
      */
@@ -49,6 +53,8 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
+     * Get customer id
+     *
      * @return mixed
      */
     public function getCustomerId()
@@ -57,7 +63,9 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
-     * @param $customerId
+     * Set customer id
+     *
+     * @param int $customerId
      * @return Company|mixed
      */
     public function setCustomerId($customerId)
@@ -66,6 +74,8 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
+     * Get company name
+     *
      * @return mixed
      */
     public function getCompanyName()
@@ -74,7 +84,9 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
-     * @param $companyName
+     * Set company name
+     *
+     * @param string $companyName
      * @return Company
      */
     public function setCompanyName($companyName)
@@ -83,6 +95,8 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
+     * Get company logo
+     *
      * @return mixed
      */
     public function getCompanyLogo()
@@ -91,7 +105,9 @@ class Company extends AbstractModel implements CompanyInterface
     }
 
     /**
-     * @param $companyLogo
+     * Set company logo
+     *
+     * @param string $companyLogo
      * @return Company
      */
     public function setCompanyLogo($companyLogo)
