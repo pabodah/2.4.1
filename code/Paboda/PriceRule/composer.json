@@ -1,0 +1,26 @@
+{
+    "name": "paboda/module-pricerule",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        },
+        {
+            "email": "paboda.h@gmail.com",
+            "name": "paboda Hettiarachchi"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Paboda\\PriceRule\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
