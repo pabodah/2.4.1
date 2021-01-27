@@ -43,7 +43,6 @@ class Products implements OptionSourceInterface
         CustomerRepositoryInterface $customerRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         CollectionFactory $collectionFactory
-
     ) {
         $this->customerRepository = $customerRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;

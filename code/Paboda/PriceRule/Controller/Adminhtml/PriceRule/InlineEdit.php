@@ -8,6 +8,9 @@ namespace Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Paboda\PriceRule\Model\PriceRule;
+use Paboda\PriceRule\Model\PriceRuleFactory;
+use Paboda\PriceRule\Model\ResourceModel\PriceRule as PriceRuleResource;
 
 class InlineEdit extends Action
 {
@@ -17,17 +20,33 @@ class InlineEdit extends Action
     protected $jsonFactory;
 
     /**
+     * @var PriceRuleFactory
+     */
+    protected $priceRuleFactory;
+
+    /**
+     * @var PriceRuleResource
+     */
+    protected $priceRuleResource;
+
+    /**
      * Constructor
      *
      * @param Context $context
      * @param JsonFactory $jsonFactory
+     * @param PriceRuleFactory $priceRuleFactory
+     * @param PriceRuleResource $priceRuleResource
      */
     public function __construct(
         Context $context,
-        JsonFactory $jsonFactory
+        JsonFactory $jsonFactory,
+        PriceRuleFactory $priceRuleFactory,
+        PriceRuleResource $priceRuleResource
     ) {
         parent::__construct($context);
         $this->jsonFactory = $jsonFactory;
+        $this->priceRuleFactory = $priceRuleFactory;
+        $this->priceRuleResource = $priceRuleResource;
     }
 
     /**
@@ -49,11 +68,13 @@ class InlineEdit extends Action
                 $error = true;
             } else {
                 foreach (array_keys($postItems) as $modelid) {
-                    /** @var \Paboda\PriceRule\Model\PriceRule $model */
-                    $model = $this->_objectManager->create(\Paboda\PriceRule\Model\PriceRule::class)->load($modelid);
+                    /** @var PriceRule $model */
+                    $model = $this->priceRuleFactory->create();
+                    $this->priceRuleResource->load($model, $modelid);
+
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
-                        $model->save();
+                        $this->priceRuleResource->save($model);
                     } catch (\Exception $e) {
                         $messages[] = "[Pricerule ID: {$modelid}]  {$e->getMessage()}";
                         $error = true;

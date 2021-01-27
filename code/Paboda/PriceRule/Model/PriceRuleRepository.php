@@ -130,11 +130,6 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     public function save(
         PriceRuleInterface $priceRule
     ) {
-        /* if (empty($priceRule->getStoreId())) {
-            $storeId = $this->storeManager->getStore()->getId();
-            $priceRule->setStoreId($storeId);
-        } */
-
         $priceRuleData = $this->extensibleDataObjectConverter->toNestedArray(
             $priceRule,
             [],
