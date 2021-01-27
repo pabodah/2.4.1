@@ -1,11 +1,20 @@
 <?php
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
 
 namespace Paboda\PriceRule\Model\Source;
 
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class Products
+ *
+ * @package Paboda\PriceRule\Model\Source
+ */
 class Products implements OptionSourceInterface
 {
     /**
@@ -19,26 +28,31 @@ class Products implements OptionSourceInterface
     protected $searchCriteriaBuilder;
 
     /**
-     * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
+     * @var CollectionFactory
      */
     protected $collectionFactory;
 
     /**
+     * Constructor
+     *
      * @param CustomerRepositoryInterface $customerRepository
-     * @param SearchCriteriaBuilder       $searchCriteriaBuilder
-     * */
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param CollectionFactory $collectionFactory
+     */
     public function __construct(
         CustomerRepositoryInterface $customerRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory
 
     ) {
-        $this->customerRepository    = $customerRepository;
+        $this->customerRepository = $customerRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->collectionFactory = $collectionFactory;
     }
 
     /**
+     * Create option array
+     *
      * @return array
      */
     public function toOptionArray()
@@ -47,9 +61,11 @@ class Products implements OptionSourceInterface
         $collection
             ->addAttributeToSelect('sku')
             ->addAttributeToSelect('name')
+            ->addAttributeToSelect('visibility')
+            ->addAttributeToFilter('visibility', ['neq' => 1])
             ->setOrder('sku', 'ASC');
 
-        $ret        = [];
+        $ret = [];
         foreach ($collection as $product) {
             $ret[] = [
                 'value' => $product->getSku(),

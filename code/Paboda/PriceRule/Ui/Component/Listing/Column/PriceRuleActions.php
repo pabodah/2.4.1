@@ -1,31 +1,44 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Ui\Component\Listing\Column;
 
-class PriceRuleActions extends \Magento\Ui\Component\Listing\Columns\Column
-{
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
+use Magento\Ui\Component\Listing\Columns\Column;
 
+/**
+ * Class PriceRuleActions
+ *
+ * @package Paboda\PriceRule\Ui\Component\Listing\Column
+ */
+class PriceRuleActions extends Column
+{
     const URL_PATH_DELETE = 'paboda_pricerule/pricerule/delete';
-    protected $urlBuilder;
     const URL_PATH_DETAILS = 'paboda_pricerule/pricerule/details';
     const URL_PATH_EDIT = 'paboda_pricerule/pricerule/edit';
 
     /**
-     * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
-     * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
-     * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @var UrlInterface
+     */
+    protected $urlBuilder;
+
+    /**
+     * Constructor
+     *
+     * @param ContextInterface $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param UrlInterface $urlBuilder
      * @param array $components
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
-        \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
-        \Magento\Framework\UrlInterface $urlBuilder,
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
+        UrlInterface $urlBuilder,
         array $components = [],
         array $data = []
     ) {
@@ -63,8 +76,8 @@ class PriceRuleActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
+                                'title' => __('Delete price rule set for "${ $.$data.sku }"'),
+                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.sku }" record?')
                             ]
                         ]
                     ];

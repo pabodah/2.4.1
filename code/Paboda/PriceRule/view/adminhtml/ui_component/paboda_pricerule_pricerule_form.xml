@@ -1,5 +1,11 @@
 <?xml version="1.0" ?>
-<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+<!--
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
 			<item name="provider" xsi:type="string">paboda_pricerule_pricerule_form.pricerule_form_data_source</item>

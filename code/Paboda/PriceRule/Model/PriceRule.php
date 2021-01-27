@@ -1,41 +1,58 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Model;
 
 use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Registry;
 use Paboda\PriceRule\Api\Data\PriceRuleInterface;
 use Paboda\PriceRule\Api\Data\PriceRuleInterfaceFactory;
+use Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection;
 
-class PriceRule extends \Magento\Framework\Model\AbstractModel
+/**
+ * Class PriceRule
+ *
+ * @package Paboda\PriceRule\Model
+ */
+class PriceRule extends AbstractModel
 {
-
+    /**
+     * @var PriceRuleInterfaceFactory
+     */
     protected $priceruleDataFactory;
 
+    /**
+     * @var DataObjectHelper
+     */
     protected $dataObjectHelper;
 
+    /**
+     * @var string
+     */
     protected $_eventPrefix = 'paboda_pricerule_pricerule';
 
     /**
-     * @param \Magento\Framework\Model\Context $context
-     * @param \Magento\Framework\Registry $registry
+     * Constructor
+     *
+     * @param Context $context
+     * @param Registry $registry
      * @param PriceRuleInterfaceFactory $priceruleDataFactory
      * @param DataObjectHelper $dataObjectHelper
-     * @param \Paboda\PriceRule\Model\ResourceModel\PriceRule $resource
-     * @param \Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection $resourceCollection
+     * @param ResourceModel\PriceRule $resource
+     * @param Collection $resourceCollection
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\Model\Context $context,
-        \Magento\Framework\Registry $registry,
+        Context $context,
+        Registry $registry,
         PriceRuleInterfaceFactory $priceruleDataFactory,
         DataObjectHelper $dataObjectHelper,
-        \Paboda\PriceRule\Model\ResourceModel\PriceRule $resource,
-        \Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection $resourceCollection,
+        ResourceModel\PriceRule $resource,
+        Collection $resourceCollection,
         array $data = []
     ) {
         $this->priceruleDataFactory = $priceruleDataFactory;
@@ -44,21 +61,21 @@ class PriceRule extends \Magento\Framework\Model\AbstractModel
     }
 
     /**
-     * Retrieve pricerule model with pricerule data
+     * Retrieve price rule model with price rule data
+     *
      * @return PriceRuleInterface
      */
     public function getDataModel()
     {
         $priceruleData = $this->getData();
-        
+
         $priceruleDataObject = $this->priceruleDataFactory->create();
         $this->dataObjectHelper->populateWithArray(
             $priceruleDataObject,
             $priceruleData,
             PriceRuleInterface::class
         );
-        
+
         return $priceruleDataObject;
     }
 }
-

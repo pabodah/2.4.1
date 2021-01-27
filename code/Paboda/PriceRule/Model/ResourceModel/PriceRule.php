@@ -1,15 +1,18 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
-
 namespace Paboda\PriceRule\Model\ResourceModel;
 
-class PriceRule extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
-{
+use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
+/**
+ * Class PriceRule
+ *
+ * @package Paboda\PriceRule\Model\ResourceModel
+ */
+class PriceRule extends AbstractDb
+{
     /**
      * Define resource model
      *
@@ -20,4 +23,3 @@ class PriceRule extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_init('custom_pricerule_pricerule', 'price_rule_id');
     }
 }
-

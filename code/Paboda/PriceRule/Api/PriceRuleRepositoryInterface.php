@@ -1,19 +1,21 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
-
 namespace Paboda\PriceRule\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
+/**
+ * Interface PriceRuleRepositoryInterface
+ *
+ * @package Paboda\PriceRule\Api
+ */
 interface PriceRuleRepositoryInterface
 {
-
     /**
      * Save PriceRule
+     *
      * @param \Paboda\PriceRule\Api\Data\PriceRuleInterface $priceRule
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -24,6 +26,7 @@ interface PriceRuleRepositoryInterface
 
     /**
      * Retrieve PriceRule
+     *
      * @param string $priceRuleId
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -32,6 +35,7 @@ interface PriceRuleRepositoryInterface
 
     /**
      * Retrieve PriceRule matching the specified criteria.
+     *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
      * @return \Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -42,6 +46,7 @@ interface PriceRuleRepositoryInterface
 
     /**
      * Delete PriceRule
+     *
      * @param \Paboda\PriceRule\Api\Data\PriceRuleInterface $priceRule
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
@@ -52,6 +57,7 @@ interface PriceRuleRepositoryInterface
 
     /**
      * Delete PriceRule by ID
+     *
      * @param string $priceRuleId
      * @return bool true on success
      * @throws \Magento\Framework\Exception\NoSuchEntityException
@@ -59,4 +65,3 @@ interface PriceRuleRepositoryInterface
      */
     public function deleteById($priceRuleId);
 }
-

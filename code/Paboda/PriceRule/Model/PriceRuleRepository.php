@@ -1,9 +1,7 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Model;
 
@@ -16,38 +14,78 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Store\Model\StoreManagerInterface;
+use Paboda\PriceRule\Api\Data\PriceRuleInterface;
 use Paboda\PriceRule\Api\Data\PriceRuleInterfaceFactory;
 use Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterfaceFactory;
 use Paboda\PriceRule\Api\PriceRuleRepositoryInterface;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule as ResourcePriceRule;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule\CollectionFactory as PriceRuleCollectionFactory;
 
+/**
+ * Class PriceRuleRepository
+ *
+ * @package Paboda\PriceRule\Model
+ */
 class PriceRuleRepository implements PriceRuleRepositoryInterface
 {
-
+    /**
+     * @var StoreManagerInterface
+     */
     private $storeManager;
 
+    /**
+     * @var PriceRuleFactory
+     */
     protected $priceRuleFactory;
 
+    /**
+     * @var DataObjectProcessor
+     */
     protected $dataObjectProcessor;
 
+    /**
+     * @var CollectionProcessorInterface
+     */
     private $collectionProcessor;
 
+    /**
+     * @var ExtensibleDataObjectConverter
+     */
     protected $extensibleDataObjectConverter;
-    protected $priceRuleCollectionFactory;
-
-    protected $searchResultsFactory;
-
-    protected $dataPriceRuleFactory;
-
-    protected $extensionAttributesJoinProcessor;
-
-    protected $resource;
-
-    protected $dataObjectHelper;
-
 
     /**
+     * @var PriceRuleCollectionFactory
+     */
+    protected $priceRuleCollectionFactory;
+
+    /**
+     * @var PriceRuleSearchResultsInterfaceFactory
+     */
+    protected $searchResultsFactory;
+
+    /**
+     * @var PriceRuleInterfaceFactory
+     */
+    protected $dataPriceRuleFactory;
+
+    /**
+     * @var JoinProcessorInterface
+     */
+    protected $extensionAttributesJoinProcessor;
+
+    /**
+     * @var ResourcePriceRule
+     */
+    protected $resource;
+
+    /**
+     * @var DataObjectHelper
+     */
+    protected $dataObjectHelper;
+
+    /**
+     * PriceRuleRepository constructor.
+     *
      * @param ResourcePriceRule $resource
      * @param PriceRuleFactory $priceRuleFactory
      * @param PriceRuleInterfaceFactory $dataPriceRuleFactory
@@ -90,21 +128,21 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      * {@inheritdoc}
      */
     public function save(
-        \Paboda\PriceRule\Api\Data\PriceRuleInterface $priceRule
+        PriceRuleInterface $priceRule
     ) {
         /* if (empty($priceRule->getStoreId())) {
             $storeId = $this->storeManager->getStore()->getId();
             $priceRule->setStoreId($storeId);
         } */
-        
+
         $priceRuleData = $this->extensibleDataObjectConverter->toNestedArray(
             $priceRule,
             [],
-            \Paboda\PriceRule\Api\Data\PriceRuleInterface::class
+            PriceRuleInterface::class
         );
-        
+
         $priceRuleModel = $this->priceRuleFactory->create()->setData($priceRuleData);
-        
+
         try {
             $this->resource->save($priceRuleModel);
         } catch (\Exception $exception) {
@@ -136,22 +174,22 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
     ) {
         $collection = $this->priceRuleCollectionFactory->create();
-        
+
         $this->extensionAttributesJoinProcessor->process(
             $collection,
-            \Paboda\PriceRule\Api\Data\PriceRuleInterface::class
+            PriceRuleInterface::class
         );
-        
+
         $this->collectionProcessor->process($criteria, $collection);
-        
+
         $searchResults = $this->searchResultsFactory->create();
         $searchResults->setSearchCriteria($criteria);
-        
+
         $items = [];
         foreach ($collection as $model) {
             $items[] = $model->getDataModel();
         }
-        
+
         $searchResults->setItems($items);
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults;
@@ -161,7 +199,7 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      * {@inheritdoc}
      */
     public function delete(
-        \Paboda\PriceRule\Api\Data\PriceRuleInterface $priceRule
+        PriceRuleInterface $priceRule
     ) {
         try {
             $priceRuleModel = $this->priceRuleFactory->create();
@@ -184,4 +222,3 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
         return $this->delete($this->get($priceRuleId));
     }
 }
-

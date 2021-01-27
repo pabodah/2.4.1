@@ -1,19 +1,18 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Model\Data;
 
+use Magento\Framework\Api\AbstractExtensibleObject;
 use Paboda\PriceRule\Api\Data\PriceRuleInterface;
 
-class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implements PriceRuleInterface
+class PriceRule extends AbstractExtensibleObject implements PriceRuleInterface
 {
-
     /**
      * Get price_rule_id
+     *
      * @return string|null
      */
     public function getPriceRuleId()
@@ -23,6 +22,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set price_rule_id
+     *
      * @param string $priceRuleId
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -32,7 +32,8 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
     }
 
     /**
-     * Get sku
+     * Get SKU
+     *
      * @return string|null
      */
     public function getSku()
@@ -41,7 +42,8 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
     }
 
     /**
-     * Set sku
+     * Set SKU
+     *
      * @param string $sku
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -51,7 +53,8 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
     }
 
     /**
-     * Retrieve existing extension attributes object or create a new one.
+     * Retrieve existing extension attributes object or create a new one
+     *
      * @return \Paboda\PriceRule\Api\Data\PriceRuleExtensionInterface|null
      */
     public function getExtensionAttributes()
@@ -61,6 +64,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set an extension attributes object.
+     *
      * @param \Paboda\PriceRule\Api\Data\PriceRuleExtensionInterface $extensionAttributes
      * @return $this
      */
@@ -72,6 +76,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Get customer_id
+     *
      * @return string|null
      */
     public function getCustomerId()
@@ -81,6 +86,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set customer_id
+     *
      * @param string $customerId
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -91,6 +97,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Get price
+     *
      * @return string|null
      */
     public function getPrice()
@@ -100,6 +107,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set price
+     *
      * @param string $price
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -110,6 +118,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Get start_date
+     *
      * @return string|null
      */
     public function getStartDate()
@@ -119,6 +128,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set start_date
+     *
      * @param string $startDate
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -129,6 +139,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Get end_date
+     *
      * @return string|null
      */
     public function getEndDate()
@@ -138,6 +149,7 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
 
     /**
      * Set end_date
+     *
      * @param string $endDate
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -146,4 +158,3 @@ class PriceRule extends \Magento\Framework\Api\AbstractExtensibleObject implemen
         return $this->setData(self::END_DATE, $endDate);
     }
 }
-

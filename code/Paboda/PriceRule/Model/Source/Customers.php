@@ -1,11 +1,18 @@
 <?php
-
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
 namespace Paboda\PriceRule\Model\Source;
 
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Data\OptionSourceInterface;
 
+/**
+ * Class Customers
+ *
+ * @package Paboda\PriceRule\Model\Source
+ */
 class Customers implements OptionSourceInterface
 {
     /**
@@ -31,7 +38,10 @@ class Customers implements OptionSourceInterface
     }
 
     /**
+     * Create option array
+     *
      * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function toOptionArray()
     {
@@ -49,17 +59,19 @@ class Customers implements OptionSourceInterface
     }
 
     /**
+     * Get items to an array
+     *
      * @return array
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function toArray()
     {
         $searchCriteria = $this->searchCriteriaBuilder->create();
-        $customers      = $this->customerRepository->getList($searchCriteria)->getItems();
+        $customers = $this->customerRepository->getList($searchCriteria)->getItems();
 
         $customersList = [];
         foreach ($customers as $customer) {
-            $customersList[$customer->getId()] = __($customer->getFirstname() . ' ' . $customer->getLastname());
+            $customersList[$customer->getId()] = $customer->getFirstname() . ' ' . $customer->getLastname();
         }
 
         return $customersList;

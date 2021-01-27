@@ -1,26 +1,38 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
-class Edit extends \Paboda\PriceRule\Controller\Adminhtml\PriceRule
-{
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
+use Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
+/**
+ * Class Edit
+ *
+ * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ */
+class Edit extends PriceRule
+{
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * Edit constructor.
+     *
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        Registry $coreRegistry,
+        PageFactory $resultPageFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context, $coreRegistry);
@@ -33,11 +45,9 @@ class Edit extends \Paboda\PriceRule\Controller\Adminhtml\PriceRule
      */
     public function execute()
     {
-        // 1. Get ID and create model
         $id = $this->getRequest()->getParam('price_rule_id');
         $model = $this->_objectManager->create(\Paboda\PriceRule\Model\PriceRule::class);
-        
-        // 2. Initial checking
+
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
@@ -48,8 +58,7 @@ class Edit extends \Paboda\PriceRule\Controller\Adminhtml\PriceRule
             }
         }
         $this->_coreRegistry->register('paboda_pricerule_pricerule', $model);
-        
-        // 3. Build edit form
+
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $this->initPage($resultPage)->addBreadcrumb(
@@ -57,8 +66,7 @@ class Edit extends \Paboda\PriceRule\Controller\Adminhtml\PriceRule
             $id ? __('Edit price rule') : __('New price rule')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Price rules'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit price rule %1', $model->getId()) : __('New Pricerule'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit price rule %1', $model->getId()) : __('New price rule'));
         return $resultPage;
     }
 }
-

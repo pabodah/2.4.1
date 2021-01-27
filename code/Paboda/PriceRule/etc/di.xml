@@ -1,9 +1,19 @@
 <?xml version="1.0" ?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-	<preference for="Paboda\PriceRule\Api\PriceRuleRepositoryInterface" type="Paboda\PriceRule\Model\PriceRuleRepository"/>
-	<preference for="Paboda\PriceRule\Api\Data\PriceRuleInterface" type="Paboda\PriceRule\Model\Data\PriceRule"/>
-	<preference for="Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-	<virtualType name="Paboda\PriceRule\Model\ResourceModel\PriceRule\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+<!--
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Paboda\PriceRule\Api\PriceRuleRepositoryInterface"
+                type="Paboda\PriceRule\Model\PriceRuleRepository"/>
+	<preference for="Paboda\PriceRule\Api\Data\PriceRuleInterface"
+                type="Paboda\PriceRule\Model\Data\PriceRule"/>
+	<preference for="Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Paboda\PriceRule\Model\ResourceModel\PriceRule\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">custom_pricerule_pricerule</argument>
 			<argument name="resourceModel" xsi:type="string">Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection</argument>
@@ -12,7 +22,8 @@
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
 		<arguments>
 			<argument name="collections" xsi:type="array">
-				<item name="paboda_pricerule_pricerule_listing_data_source" xsi:type="string">Paboda\PriceRule\Model\ResourceModel\PriceRule\Grid\Collection</item>
+				<item name="paboda_pricerule_pricerule_listing_data_source"
+                      xsi:type="string">Paboda\PriceRule\Model\ResourceModel\PriceRule\Grid\Collection</item>
 			</argument>
 		</arguments>
 	</type>

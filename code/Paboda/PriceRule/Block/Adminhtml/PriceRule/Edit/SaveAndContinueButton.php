@@ -1,18 +1,22 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+/**
+ * Class SaveAndContinueButton
+ *
+ * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ */
 class SaveAndContinueButton extends GenericButton implements ButtonProviderInterface
 {
-
     /**
+     * Get button data
+     *
      * @return array
      */
     public function getButtonData()
@@ -29,4 +33,3 @@ class SaveAndContinueButton extends GenericButton implements ButtonProviderInter
         ];
     }
 }
-

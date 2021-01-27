@@ -1,15 +1,19 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Model\ResourceModel\PriceRule;
 
-class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
-{
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
+/**
+ * Class Collection
+ *
+ * @package Paboda\PriceRule\Model\ResourceModel\PriceRule
+ */
+class Collection extends AbstractCollection
+{
     /**
      * @var string
      */
@@ -28,4 +32,3 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
         );
     }
 }
-

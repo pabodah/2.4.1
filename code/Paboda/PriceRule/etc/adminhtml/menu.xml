@@ -1,18 +1,23 @@
 <?xml version="1.0" ?>
-
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+<!--
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
         <add id="Paboda::top_level"
              module="Paboda_PriceRule"
              resource="Magento_Backend::content"
              sortOrder="9999"
-             title="PriceRule"/>
+             title="Price Rule"/>
         <add action="paboda_pricerule/pricerule/index"
              id="Paboda_PriceRule::paboda_pricerule_pricerule"
              module="Paboda_PriceRule"
              parent="Paboda::top_level"
              resource="Magento_Backend::content"
              sortOrder="9999"
-             title="PriceRule"/>
+             title="Price Rule"/>
 	</menu>
 </config>

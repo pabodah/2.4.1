@@ -1,24 +1,28 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+/**
+ * Class SaveButton
+ *
+ * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
-
     /**
+     * Get button data
+     *
      * @return array
      */
     public function getButtonData()
     {
         return [
-            'label' => __('Save Pricerule'),
+            'label' => __('Save price rule'),
             'class' => 'save primary',
             'data_attribute' => [
                 'mage-init' => ['button' => ['event' => 'save']],
@@ -28,4 +32,3 @@ class SaveButton extends GenericButton implements ButtonProviderInterface
         ];
     }
 }
-

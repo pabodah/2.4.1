@@ -1,12 +1,18 @@
 <?php
-
-declare(strict_types=1);
-
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
 namespace Paboda\PriceRule\Api\Data;
 
-interface PriceRuleInterface extends \Magento\Framework\Api\ExtensibleDataInterface
-{
+use Magento\Framework\Api\ExtensibleDataInterface;
 
+/**
+ * Interface PriceRuleInterface
+ *
+ * @package Paboda\PriceRule\Api\Data
+ */
+interface PriceRuleInterface extends ExtensibleDataInterface
+{
     const CUSTOMER_ID = 'customer_id';
     const END_DATE = 'end_date';
     const START_DATE = 'start_date';
@@ -16,38 +22,44 @@ interface PriceRuleInterface extends \Magento\Framework\Api\ExtensibleDataInterf
 
     /**
      * Get price_rule_id
+     *
      * @return string|null
      */
     public function getPriceRuleId();
 
     /**
      * Set price_rule_id
+     *
      * @param string $priceRuleId
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
     public function setPriceRuleId($priceRuleId);
 
     /**
-     * Get sku
+     * Get SKU
+     *
      * @return string|null
      */
     public function getSku();
 
     /**
-     * Set sku
+     * Set SKU
+     *
      * @param string $sku
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
     public function setSku($sku);
 
     /**
-     * Retrieve existing extension attributes object or create a new one.
+     * Retrieve existing extension attributes object or create a new one
+     *
      * @return \Paboda\PriceRule\Api\Data\PriceRuleExtensionInterface|null
      */
     public function getExtensionAttributes();
 
     /**
-     * Set an extension attributes object.
+     * Set an extension attributes object
+     *
      * @param \Paboda\PriceRule\Api\Data\PriceRuleExtensionInterface $extensionAttributes
      * @return $this
      */
@@ -57,12 +69,14 @@ interface PriceRuleInterface extends \Magento\Framework\Api\ExtensibleDataInterf
 
     /**
      * Get customer_id
+     *
      * @return string|null
      */
     public function getCustomerId();
 
     /**
      * Set customer_id
+     *
      * @param string $customerId
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -70,12 +84,14 @@ interface PriceRuleInterface extends \Magento\Framework\Api\ExtensibleDataInterf
 
     /**
      * Get price
+     *
      * @return string|null
      */
     public function getPrice();
 
     /**
      * Set price
+     *
      * @param string $price
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -83,12 +99,14 @@ interface PriceRuleInterface extends \Magento\Framework\Api\ExtensibleDataInterf
 
     /**
      * Get start_date
+     *
      * @return string|null
      */
     public function getStartDate();
 
     /**
      * Set start_date
+     *
      * @param string $startDate
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
@@ -96,15 +114,16 @@ interface PriceRuleInterface extends \Magento\Framework\Api\ExtensibleDataInterf
 
     /**
      * Get end_date
+     *
      * @return string|null
      */
     public function getEndDate();
 
     /**
      * Set end_date
+     *
      * @param string $endDate
      * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface
      */
     public function setEndDate($endDate);
 }
-

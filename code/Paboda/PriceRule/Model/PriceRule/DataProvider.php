@@ -1,20 +1,24 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Model\PriceRule;
 
 use Magento\Framework\App\Request\DataPersistorInterface;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule\CollectionFactory;
 
-class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
+class DataProvider extends AbstractDataProvider
 {
-
+    /**
+     * @var DataPersistorInterface
+     */
     protected $dataPersistor;
 
+    /**
+     * @var \Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection
+     */
     protected $collection;
 
     protected $loadedData;
@@ -54,20 +58,22 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         if (isset($this->loadedData)) {
             return $this->loadedData;
         }
+
         $items = $this->collection->getItems();
+
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
         }
+
         $data = $this->dataPersistor->get('paboda_pricerule_pricerule');
-        
+
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
             $this->dataPersistor->clear('paboda_pricerule_pricerule');
         }
-        
+
         return $this->loadedData;
     }
 }
-

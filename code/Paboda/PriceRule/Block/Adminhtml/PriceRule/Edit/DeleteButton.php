@@ -1,18 +1,22 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+/**
+ * Class DeleteButton
+ *
+ * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ */
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
-
     /**
+     * Get button data
+     *
      * @return array
      */
     public function getButtonData()
@@ -20,7 +24,7 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         $data = [];
         if ($this->getModelId()) {
             $data = [
-                'label' => __('Delete Pricerule'),
+                'label' => __('Delete price rule'),
                 'class' => 'delete',
                 'on_click' => 'deleteConfirm(\'' . __(
                     'Are you sure you want to do this?'
@@ -41,4 +45,3 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         return $this->getUrl('*/*/delete', ['price_rule_id' => $this->getModelId()]);
     }
 }
-

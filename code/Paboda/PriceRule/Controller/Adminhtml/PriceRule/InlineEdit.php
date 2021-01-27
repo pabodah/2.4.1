@@ -1,24 +1,30 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
-class InlineEdit extends \Magento\Backend\App\Action
-{
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\Result\JsonFactory;
 
+class InlineEdit extends Action
+{
+    /**
+     * @var JsonFactory
+     */
     protected $jsonFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * Constructor
+     *
+     * @param Context $context
+     * @param JsonFactory $jsonFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        Context $context,
+        JsonFactory $jsonFactory
     ) {
         parent::__construct($context);
         $this->jsonFactory = $jsonFactory;
@@ -35,7 +41,7 @@ class InlineEdit extends \Magento\Backend\App\Action
         $resultJson = $this->jsonFactory->create();
         $error = false;
         $messages = [];
-        
+
         if ($this->getRequest()->getParam('isAjax')) {
             $postItems = $this->getRequest()->getParam('items', []);
             if (!count($postItems)) {
@@ -55,11 +61,10 @@ class InlineEdit extends \Magento\Backend\App\Action
                 }
             }
         }
-        
+
         return $resultJson->setData([
             'messages' => $messages,
             'error' => $error
         ]);
     }
 }
-

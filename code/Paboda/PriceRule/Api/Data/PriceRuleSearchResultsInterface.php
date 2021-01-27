@@ -1,23 +1,30 @@
 <?php
-
-declare(strict_types=1);
-
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
 namespace Paboda\PriceRule\Api\Data;
 
-interface PriceRuleSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
-{
+use Magento\Framework\Api\SearchResultsInterface;
 
+/**
+ * Interface PriceRuleSearchResultsInterface
+ *
+ * @package Paboda\PriceRule\Api\Data
+ */
+interface PriceRuleSearchResultsInterface extends SearchResultsInterface
+{
     /**
-     * Get PriceRule list.
-     * @return \Paboda\PriceRule\Api\Data\PriceRuleInterface[]
+     * Get items
+     *
+     * @return \Magento\Framework\Api\ExtensibleDataInterface[]
      */
     public function getItems();
 
     /**
-     * Set sku list.
-     * @param \Paboda\PriceRule\Api\Data\PriceRuleInterface[] $items
-     * @return $this
+     * Set items
+     *
+     * @param array $items
+     * @return PriceRuleSearchResultsInterface
      */
     public function setItems(array $items);
 }
-

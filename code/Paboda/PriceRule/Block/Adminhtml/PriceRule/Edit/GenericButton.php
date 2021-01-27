@@ -1,17 +1,22 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit;
 
 use Magento\Backend\Block\Widget\Context;
 
+/**
+ * Class GenericButton
+ *
+ * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ */
 abstract class GenericButton
 {
-
+    /**
+     * @var Context
+     */
     protected $context;
 
     /**
@@ -44,4 +49,3 @@ abstract class GenericButton
         return $this->context->getUrlBuilder()->getUrl($route, $params);
     }
 }
-

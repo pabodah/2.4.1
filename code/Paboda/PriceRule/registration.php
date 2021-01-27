@@ -1,9 +1,12 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
+
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Paboda_PriceRule', __DIR__);
-
+ComponentRegistrar::register(
+    ComponentRegistrar::MODULE,
+    'Paboda_PriceRule',
+    __DIR__
+);

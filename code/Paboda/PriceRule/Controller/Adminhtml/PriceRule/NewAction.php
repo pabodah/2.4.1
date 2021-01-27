@@ -1,26 +1,36 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
-class NewAction extends \Paboda\PriceRule\Controller\Adminhtml\PriceRule
-{
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\ForwardFactory;
+use Magento\Framework\Registry;
+use Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
+/**
+ * Class NewAction
+ *
+ * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ */
+class NewAction extends PriceRule
+{
+    /**
+     * @var ForwardFactory
+     */
     protected $resultForwardFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param ForwardFactory $resultForwardFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        \Magento\Backend\Model\View\Result\ForwardFactory $resultForwardFactory
+        Context $context,
+        Registry $coreRegistry,
+        ForwardFactory $resultForwardFactory
     ) {
         $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context, $coreRegistry);
@@ -38,4 +48,3 @@ class NewAction extends \Paboda\PriceRule\Controller\Adminhtml\PriceRule
         return $resultForward->forward('edit');
     }
 }
-

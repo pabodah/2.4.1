@@ -1,26 +1,34 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
 
-class Save extends \Magento\Backend\App\Action
+/**
+ * Class Save
+ *
+ * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ */
+class Save extends Action
 {
-
+    /**
+     * @var DataPersistorInterface
+     */
     protected $dataPersistor;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * @param Context $context
+     * @param DataPersistorInterface $dataPersistor
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        Context $context,
+        DataPersistorInterface $dataPersistor
     ) {
         $this->dataPersistor = $dataPersistor;
         parent::__construct($context);
@@ -38,20 +46,20 @@ class Save extends \Magento\Backend\App\Action
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             $id = $this->getRequest()->getParam('price_rule_id');
-        
+
             $model = $this->_objectManager->create(\Paboda\PriceRule\Model\PriceRule::class)->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This price rule no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
-        
+
             $model->setData($data);
-        
+
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the price rule.'));
                 $this->dataPersistor->clear('paboda_pricerule_pricerule');
-        
+
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['price_rule_id' => $model->getId()]);
                 }
@@ -61,11 +69,10 @@ class Save extends \Magento\Backend\App\Action
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the price rule.'));
             }
-        
+
             $this->dataPersistor->set('paboda_pricerule_pricerule', $data);
             return $resultRedirect->setPath('*/*/edit', ['price_rule_id' => $this->getRequest()->getParam('price_rule_id')]);
         }
         return $resultRedirect->setPath('*/*/');
     }
 }
-

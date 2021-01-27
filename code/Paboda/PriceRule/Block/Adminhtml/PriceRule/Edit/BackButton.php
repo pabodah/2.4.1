@@ -1,18 +1,22 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
+/**
+ * Class BackButton
+ *
+ * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ */
 class BackButton extends GenericButton implements ButtonProviderInterface
 {
-
     /**
+     * Get button data
+     *
      * @return array
      */
     public function getButtonData()
@@ -26,7 +30,7 @@ class BackButton extends GenericButton implements ButtonProviderInterface
     }
 
     /**
-     * Get URL for back (reset) button
+     * Get URL for back button
      *
      * @return string
      */
@@ -35,4 +39,3 @@ class BackButton extends GenericButton implements ButtonProviderInterface
         return $this->getUrl('*/*/');
     }
 }
-

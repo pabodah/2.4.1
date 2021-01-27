@@ -1,25 +1,32 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Controller\Adminhtml;
 
-abstract class PriceRule extends \Magento\Backend\App\Action
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
+
+/**
+ * Class PriceRule
+ *
+ * @package Paboda\PriceRule\Controller\Adminhtml
+ */
+abstract class PriceRule extends Action
 {
 
     const ADMIN_RESOURCE = 'Paboda_PriceRule::top_level';
     protected $_coreRegistry;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
+     * @param Context $context
+     * @param Registry $coreRegistry
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry
+        Context $context,
+        Registry $coreRegistry
     ) {
         $this->_coreRegistry = $coreRegistry;
         parent::__construct($context);
@@ -28,15 +35,14 @@ abstract class PriceRule extends \Magento\Backend\App\Action
     /**
      * Init page
      *
-     * @param \Magento\Backend\Model\View\Result\Page $resultPage
-     * @return \Magento\Backend\Model\View\Result\Page
+     * @param $resultPage
+     * @return mixed
      */
     public function initPage($resultPage)
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
             ->addBreadcrumb(__('Paboda'), __('Paboda'))
-            ->addBreadcrumb(__('Pricerule'), __('Pricerule'));
+            ->addBreadcrumb(__('Price rule'), __('Price rule'));
         return $resultPage;
     }
 }
-

@@ -1,26 +1,35 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
  */
-declare(strict_types=1);
 
 namespace Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 
-class Index extends \Magento\Backend\App\Action
-{
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Index
+ *
+ * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ */
+class Index extends Action
+{
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
 
     /**
      * Constructor
      *
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        Context $context,
+        PageFactory $resultPageFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
@@ -34,8 +43,7 @@ class Index extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-            $resultPage->getConfig()->getTitle()->prepend(__("PriceRule"));
-            return $resultPage;
+        $resultPage->getConfig()->getTitle()->prepend(__("Price Rule"));
+        return $resultPage;
     }
 }
-
