@@ -44,6 +44,27 @@
 		<columnsControls name="columns_controls"/>
 		<filters name="listing_filters"/>
 		<paging name="listing_paging"/>
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">paboda_pricerule_pricerule_listing.paboda_pricerule_pricerule_listing.paboda_pricerule_pricerule_columns.ids</item>
+                    <item name="indexField" xsi:type="string">price_rule_id</item>
+                </item>
+            </argument>
+            <action name="delete">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">delete</item>
+                        <item name="label" xsi:type="string" translate="true">Delete</item>
+                        <item name="url" xsi:type="url" path="paboda_pricerule/pricerule/massDelete"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Delete items</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure you want to delete selected items?</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
 	</listingToolbar>
 	<columns name="paboda_pricerule_pricerule_columns">
 		<settings>
@@ -79,26 +100,19 @@
 				<label translate="true">ID</label>
 			</settings>
 		</column>
-		<column name="sku">
+        <column name="sku">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">Paboda\PriceRule\Model\Source\Products</item>
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">select</item>
-                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="label" xsi:type="string" translate="true">Product SKU</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="editor" xsi:type="string">select</item>
                     <item name="dataType" xsi:type="string">select</item>
                 </item>
             </argument>
-		</column>
-		<actionsColumn class="Paboda\PriceRule\Ui\Component\Listing\Column\PriceRuleActions" name="actions">
-			<settings>
-				<indexField>price_rule_id</indexField>
-				<resizeEnabled>false</resizeEnabled>
-				<resizeDefaultWidth>107</resizeDefaultWidth>
-			</settings>
-		</actionsColumn>
-		<column name="customer_id">
+        </column>
+        <column name="customer_id">
             <argument name="data" xsi:type="array">
                 <item name="options" xsi:type="object">Paboda\PriceRule\Model\Source\Customers</item>
                 <item name="config" xsi:type="array">
@@ -109,45 +123,52 @@
                     <item name="dataType" xsi:type="string">select</item>
                 </item>
             </argument>
-		</column>
-		<column name="price">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">Price</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
+        </column>
+        <column name="price">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Price</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
                 <dataType>date</dataType>
-			</settings>
-		</column>
-		<column name="start_date">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">Start Date</label>
-				<editor>
-					<editorType>date</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
+            </settings>
+        </column>
+        <column name="start_date">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Start Date</label>
+                <editor>
+                    <editorType>date</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
                 <dataType>date</dataType>
-			</settings>
-		</column>
-		<column name="end_date">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">End Date</label>
-				<editor>
-					<editorType>date</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
+            </settings>
+        </column>
+        <column name="end_date">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">End Date</label>
+                <editor>
+                    <editorType>date</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
                 <dateFormat>dd/MM/YYYY</dateFormat>
-			</settings>
-		</column>
+            </settings>
+        </column>
+        <actionsColumn class="Paboda\PriceRule\Ui\Component\Listing\Column\PriceRuleActions" name="actions">
+            <settings>
+                <indexField>price_rule_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
 	</columns>
 </listing>

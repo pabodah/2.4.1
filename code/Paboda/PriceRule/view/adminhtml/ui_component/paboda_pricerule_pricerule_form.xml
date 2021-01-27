@@ -23,10 +23,10 @@
 		<namespace>paboda_pricerule_pricerule_form</namespace>
 		<dataScope>data</dataScope>
 		<deps>
-			<dep>paboda_pricerule_pricerule_form.pricerule_form_data_source</dep>
+			<dep>paboda_pricerule_pricerule_form.paboda_pricerule_form_data_source</dep>
 		</deps>
 	</settings>
-	<dataSource name="pricerule_form_data_source">
+	<dataSource name="paboda_pricerule_form_data_source">
 		<argument name="data" xsi:type="array">
 			<item name="js_config" xsi:type="array">
 				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
@@ -35,7 +35,7 @@
 		<settings>
 			<submitUrl path="*/*/save"/>
 		</settings>
-		<dataProvider class="Paboda\PriceRule\Model\PriceRule\DataProvider" name="pricerule_form_data_source">
+		<dataProvider class="Paboda\PriceRule\Model\PriceRule\DataProvider" name="paboda_pricerule_form_data_source">
 			<settings>
 				<requestFieldName>price_rule_id</requestFieldName>
 				<primaryFieldName>price_rule_id</primaryFieldName>

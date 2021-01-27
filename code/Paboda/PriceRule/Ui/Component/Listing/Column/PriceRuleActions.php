@@ -9,6 +9,7 @@ use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
+use Magento\Framework\Escaper;
 
 /**
  * Class PriceRuleActions
@@ -27,6 +28,11 @@ class PriceRuleActions extends Column
     protected $urlBuilder;
 
     /**
+     * @var Escaper
+     */
+    private $escaper;
+
+    /**
      * Constructor
      *
      * @param ContextInterface $context
@@ -39,10 +45,12 @@ class PriceRuleActions extends Column
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
         UrlInterface $urlBuilder,
+        Escaper $escaper,
         array $components = [],
         array $data = []
     ) {
         $this->urlBuilder = $urlBuilder;
+        $this->escaper = $escaper;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -57,6 +65,7 @@ class PriceRuleActions extends Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 if (isset($item['price_rule_id'])) {
+                    $title = $this->escaper->escapeHtmlAttr($item['sku']);
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
@@ -76,16 +85,15 @@ class PriceRuleActions extends Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete price rule set for "${ $.$data.sku }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.sku }" record?')
+                                'title' => __('Delete price rule set for %1', $title),
+                                'message' => __('Are you sure you want to delete record of SKU %1?', $title),
                             ]
                         ]
                     ];
                 }
             }
         }
-        
+
         return $dataSource;
     }
 }
-

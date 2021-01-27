@@ -20,6 +20,6 @@ class PriceRule extends AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('custom_pricerule_pricerule', 'price_rule_id');
+        $this->_init('custom_pricerule', 'price_rule_id');
     }
 }

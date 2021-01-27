@@ -6,9 +6,9 @@
 -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-	<table comment="custom_pricerule_pricerule Table"
+	<table name="custom_pricerule"
+           comment="Custom price rule table"
            engine="innodb"
-           name="custom_pricerule_pricerule"
            resource="default">
 		<column comment="Entity Id"
                 identity="true"

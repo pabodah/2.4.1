@@ -15,7 +15,7 @@
 	<virtualType name="Paboda\PriceRule\Model\ResourceModel\PriceRule\Grid\Collection"
                  type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
-			<argument name="mainTable" xsi:type="string">custom_pricerule_pricerule</argument>
+			<argument name="mainTable" xsi:type="string">custom_pricerule</argument>
 			<argument name="resourceModel" xsi:type="string">Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection</argument>
 		</arguments>
 	</virtualType>
