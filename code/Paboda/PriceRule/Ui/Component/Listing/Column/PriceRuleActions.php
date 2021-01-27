@@ -14,7 +14,7 @@ use Magento\Framework\Escaper;
 /**
  * Class PriceRuleActions
  *
- * @package Paboda\PriceRule\Ui\Component\Listing\Column
+ * Build edit and delete URL and popup confirmation
  */
 class PriceRuleActions extends Column
 {
@@ -38,6 +38,7 @@ class PriceRuleActions extends Column
      * @param ContextInterface $context
      * @param UiComponentFactory $uiComponentFactory
      * @param UrlInterface $urlBuilder
+     * @param Escaper $escaper
      * @param array $components
      * @param array $data
      */

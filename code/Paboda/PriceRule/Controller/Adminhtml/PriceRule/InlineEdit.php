@@ -12,6 +12,11 @@ use Paboda\PriceRule\Model\PriceRule;
 use Paboda\PriceRule\Model\PriceRuleFactory;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule as PriceRuleResource;
 
+/**
+ * Class InlineEdit
+ *
+ * Grid inline edit
+ */
 class InlineEdit extends Action
 {
     /**

@@ -9,7 +9,6 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 /**
  * Interface PriceRuleRepositoryInterface
  *
- * @package Paboda\PriceRule\Api
  */
 interface PriceRuleRepositoryInterface
 {

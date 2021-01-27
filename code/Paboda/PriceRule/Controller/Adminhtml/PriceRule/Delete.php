@@ -14,7 +14,7 @@ use Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 /**
  * Class Delete
  *
- * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ * Delete from grid
  */
 class Delete extends PriceRule
 {

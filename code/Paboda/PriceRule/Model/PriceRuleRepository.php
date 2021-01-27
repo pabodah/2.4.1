@@ -24,7 +24,7 @@ use Paboda\PriceRule\Model\ResourceModel\PriceRule\CollectionFactory as PriceRul
 /**
  * Class PriceRuleRepository
  *
- * @package Paboda\PriceRule\Model
+ * Define repository
  */
 class PriceRuleRepository implements PriceRuleRepositoryInterface
 {
@@ -125,7 +125,11 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Save
+     *
+     * @param PriceRuleInterface $priceRule
+     * @return PriceRuleInterface
+     * @throws CouldNotSaveException
      */
     public function save(
         PriceRuleInterface $priceRule
@@ -150,7 +154,11 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Load data by given id
+     *
+     * @param string $priceRuleId
+     * @return PriceRuleInterface
+     * @throws NoSuchEntityException
      */
     public function get($priceRuleId)
     {
@@ -163,7 +171,10 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Load data collection by given search criteria
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
+     * @return \Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterface
      */
     public function getList(
         \Magento\Framework\Api\SearchCriteriaInterface $criteria
@@ -191,7 +202,11 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Delete
+     *
+     * @param PriceRuleInterface $priceRule
+     * @return bool
+     * @throws CouldNotDeleteException
      */
     public function delete(
         PriceRuleInterface $priceRule
@@ -210,7 +225,11 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Delete by a given id
+     *
+     * @param string $priceRuleId
+     * @return bool
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function deleteById($priceRuleId)
     {

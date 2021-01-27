@@ -11,7 +11,7 @@ use Magento\Framework\Data\OptionSourceInterface;
 /**
  * Class Customers
  *
- * @package Paboda\PriceRule\Model\Source
+ * Get customer names and id in the dropdown
  */
 class Customers implements OptionSourceInterface
 {

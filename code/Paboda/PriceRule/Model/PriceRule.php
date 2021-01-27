@@ -16,7 +16,7 @@ use Paboda\PriceRule\Model\ResourceModel\PriceRule\Collection;
 /**
  * Class PriceRule
  *
- * @package Paboda\PriceRule\Model
+ * Define model
  */
 class PriceRule extends AbstractModel
 {

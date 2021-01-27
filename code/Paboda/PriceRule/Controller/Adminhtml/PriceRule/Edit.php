@@ -16,7 +16,7 @@ use Paboda\PriceRule\Model\ResourceModel\PriceRule as PriceRuleResource;
 /**
  * Class Edit
  *
- * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ * Edit record
  */
 class Edit extends PriceRule
 {

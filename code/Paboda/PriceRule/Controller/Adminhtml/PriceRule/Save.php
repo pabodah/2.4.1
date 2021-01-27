@@ -16,7 +16,7 @@ use Paboda\PriceRule\Model\ResourceModel\PriceRule as PriceRuleResource;
 /**
  * Class Save
  *
- * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ * Save record by form
  */
 class Save extends Action
 {
@@ -95,7 +95,8 @@ class Save extends Action
             return $resultRedirect->setPath(
                 '*/*/edit',
                 [
-                    PriceRuleInterface::PRICE_RULE_ID => $this->getRequest()->getParam(PriceRuleInterface::PRICE_RULE_ID)
+                    PriceRuleInterface::PRICE_RULE_ID => $this->getRequest()
+                        ->getParam(PriceRuleInterface::PRICE_RULE_ID)
                 ]
             );
         }

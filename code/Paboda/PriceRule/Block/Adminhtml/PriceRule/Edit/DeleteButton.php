@@ -10,7 +10,7 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 /**
  * Class DeleteButton
  *
- * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ * Delete button in admin form
  */
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {

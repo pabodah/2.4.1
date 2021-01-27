@@ -9,7 +9,7 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 /**
  * Class PriceRule
  *
- * @package Paboda\PriceRule\Model\ResourceModel
+ * Define primary column
  */
 class PriceRule extends AbstractDb
 {

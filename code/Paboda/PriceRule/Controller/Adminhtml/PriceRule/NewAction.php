@@ -13,7 +13,7 @@ use Paboda\PriceRule\Controller\Adminhtml\PriceRule;
 /**
  * Class NewAction
  *
- * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ * Define new
  */
 class NewAction extends PriceRule
 {

@@ -35,7 +35,7 @@ abstract class PriceRule extends Action
     /**
      * Init page
      *
-     * @param $resultPage
+     * @param \Magento\Backend\Model\View\Result\Page $resultPage
      * @return mixed
      */
     public function initPage($resultPage)

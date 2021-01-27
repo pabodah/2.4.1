@@ -9,7 +9,6 @@ use Magento\Framework\Api\ExtensibleDataInterface;
 /**
  * Interface PriceRuleInterface
  *
- * @package Paboda\PriceRule\Api\Data
  */
 interface PriceRuleInterface extends ExtensibleDataInterface
 {

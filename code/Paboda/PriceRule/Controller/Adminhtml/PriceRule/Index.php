@@ -12,7 +12,7 @@ use Magento\Framework\View\Result\PageFactory;
 /**
  * Class Index
  *
- * @package Paboda\PriceRule\Controller\Adminhtml\PriceRule
+ * Display grid
  */
 class Index extends Action
 {

@@ -13,7 +13,7 @@ use Magento\Framework\Data\OptionSourceInterface;
 /**
  * Class Products
  *
- * @package Paboda\PriceRule\Model\Source
+ * Get product SKUs in the dropdown
  */
 class Products implements OptionSourceInterface
 {

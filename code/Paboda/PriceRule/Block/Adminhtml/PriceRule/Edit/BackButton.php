@@ -10,7 +10,7 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 /**
  * Class BackButton
  *
- * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ * Back button in admin form
  */
 class BackButton extends GenericButton implements ButtonProviderInterface
 {

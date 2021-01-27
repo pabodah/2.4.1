@@ -10,7 +10,7 @@ use Magento\Backend\Block\Widget\Context;
 /**
  * Class GenericButton
  *
- * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ * Generic button in admin form
  */
 abstract class GenericButton
 {

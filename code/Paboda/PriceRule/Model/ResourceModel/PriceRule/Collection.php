@@ -10,7 +10,7 @@ use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 /**
  * Class Collection
  *
- * @package Paboda\PriceRule\Model\ResourceModel\PriceRule
+ * Map model and resource model
  */
 class Collection extends AbstractCollection
 {

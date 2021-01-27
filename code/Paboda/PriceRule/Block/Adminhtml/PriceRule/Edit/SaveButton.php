@@ -10,7 +10,7 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 /**
  * Class SaveButton
  *
- * @package Paboda\PriceRule\Block\Adminhtml\PriceRule\Edit
+ * Save button in admin form
  */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {
