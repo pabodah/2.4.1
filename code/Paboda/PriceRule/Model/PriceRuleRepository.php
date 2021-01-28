@@ -20,6 +20,7 @@ use Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterfaceFactory;
 use Paboda\PriceRule\Api\PriceRuleRepositoryInterface;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule as ResourcePriceRule;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule\CollectionFactory as PriceRuleCollectionFactory;
+use Magento\Customer\Model\SessionFactory;
 
 /**
  * Class PriceRuleRepository
@@ -83,6 +84,9 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      */
     protected $dataObjectHelper;
 
+    protected $customerSession;
+
+
     /**
      * PriceRuleRepository constructor.
      *
@@ -97,6 +101,7 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      * @param CollectionProcessorInterface $collectionProcessor
      * @param JoinProcessorInterface $extensionAttributesJoinProcessor
      * @param ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * @param SessionFactory $customerSession
      */
     public function __construct(
         ResourcePriceRule $resource,
@@ -109,7 +114,8 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
         StoreManagerInterface $storeManager,
         CollectionProcessorInterface $collectionProcessor,
         JoinProcessorInterface $extensionAttributesJoinProcessor,
-        ExtensibleDataObjectConverter $extensibleDataObjectConverter
+        ExtensibleDataObjectConverter $extensibleDataObjectConverter,
+        SessionFactory $customerSession
     ) {
         $this->resource = $resource;
         $this->priceRuleFactory = $priceRuleFactory;
@@ -122,6 +128,7 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
         $this->collectionProcessor = $collectionProcessor;
         $this->extensionAttributesJoinProcessor = $extensionAttributesJoinProcessor;
         $this->extensibleDataObjectConverter = $extensibleDataObjectConverter;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -234,5 +241,34 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
     public function deleteById($priceRuleId)
     {
         return $this->delete($this->get($priceRuleId));
+    }
+
+    /**
+     * Get price by SKU
+     *
+     * @param $sku
+     * @return mixed
+     * @throws NoSuchEntityException
+     */
+    /*public function getItemBySku($sku)
+    {
+        $rule = $this->priceRuleFactory->create();
+        $this->resource->load($rule, $sku, 'sku');
+        if ($rule->getId()) {
+            return $rule->getDataModel();
+        }
+        return null;
+    }*/
+
+    public function getCustomerPriceBySku($sku)
+    {
+        $customer = $this->customerSession->create();
+        if ($customer->isLoggedIn()) {
+            $collection = $this->priceRuleCollectionFactory->create();
+            $collection->addFieldToFilter('customer_id', $customer->getId());
+            $collection->addFieldToFilter('sku', $sku);
+            return $collection;
+        }
+        return null;
     }
 }

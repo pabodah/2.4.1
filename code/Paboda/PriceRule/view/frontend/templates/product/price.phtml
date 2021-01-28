@@ -1,0 +1,9 @@
+<?php
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
+/** @var \Magento\Framework\Escaper $escaper */
+/* @var \Magento\Framework\View\Element\Template $block*/
+?>
+<?php $viewModel = $block->getData('price_rule_view_model'); ?>
+<?= $escaper->escapeHtml($viewModel->getPrice()) ?>
