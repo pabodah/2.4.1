@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Paboda Hettiarachchi. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.products.list" template="Paboda_PriceRule::product/list.phtml">
+            <block name="category.product.price.rule.price"
+                   as="price.rule.price"
+                   template="Paboda_PriceRule::product/price.phtml">
+                <arguments>
+                    <argument name="product" xsi:type="object">Paboda\PriceRule\ViewModel\Product</argument>
+                    <argument name="price_rule_widget" xsi:type="object">Paboda\PriceRule\ViewModel\SpecialPrice</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

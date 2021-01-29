@@ -84,8 +84,10 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      */
     protected $dataObjectHelper;
 
+    /**
+     * @var SessionFactory
+     */
     protected $customerSession;
-
 
     /**
      * PriceRuleRepository constructor.
@@ -250,16 +252,6 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      * @return mixed
      * @throws NoSuchEntityException
      */
-    /*public function getItemBySku($sku)
-    {
-        $rule = $this->priceRuleFactory->create();
-        $this->resource->load($rule, $sku, 'sku');
-        if ($rule->getId()) {
-            return $rule->getDataModel();
-        }
-        return null;
-    }*/
-
     public function getCustomerPriceBySku($sku)
     {
         $customer = $this->customerSession->create();

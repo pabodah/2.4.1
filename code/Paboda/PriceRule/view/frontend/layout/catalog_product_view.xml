@@ -17,8 +17,8 @@
                    name="product.attribute.discontinued.message.template"
                    template="Paboda_PriceRule::product/price.phtml">
                 <arguments>
-                    <argument name="price_rule_view_model"
-                              xsi:type="object">Paboda\PriceRule\ViewModel\SpecialPrice</argument>
+                    <argument name="product" xsi:type="object">Paboda\PriceRule\ViewModel\Product</argument>
+                    <argument name="price_rule_widget" xsi:type="object">Paboda\PriceRule\ViewModel\SpecialPrice</argument>
                 </arguments>
             </block>
         </container>

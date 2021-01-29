@@ -4,6 +4,10 @@
  */
 /** @var \Magento\Framework\Escaper $escaper */
 /* @var \Magento\Framework\View\Element\Template $block*/
+/* @var $product Paboda\PriceRule\ViewModel\Product */
 ?>
-<?php $viewModel = $block->getData('price_rule_view_model'); ?>
-<?= $escaper->escapeHtml($viewModel->getPrice()) ?>
+<?php $product = $block->getData('product'); ?>
+<?php $rule = $block->getData('price_rule_widget'); ?>
+
+<?php $currentProduct = $product->getCurrentProduct() ?: $product; ?>
+<?= $escaper->escapeHtml($rule->getPrice($currentProduct)) ?>
