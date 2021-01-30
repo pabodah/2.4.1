@@ -5,6 +5,7 @@
 
 namespace Paboda\PriceRule\Model;
 
+use Magento\Customer\Model\SessionFactory;
 use Magento\Framework\Api\DataObjectHelper;
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
@@ -20,7 +21,6 @@ use Paboda\PriceRule\Api\Data\PriceRuleSearchResultsInterfaceFactory;
 use Paboda\PriceRule\Api\PriceRuleRepositoryInterface;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule as ResourcePriceRule;
 use Paboda\PriceRule\Model\ResourceModel\PriceRule\CollectionFactory as PriceRuleCollectionFactory;
-use Magento\Customer\Model\SessionFactory;
 
 /**
  * Class PriceRuleRepository
@@ -254,11 +254,15 @@ class PriceRuleRepository implements PriceRuleRepositoryInterface
      */
     public function getCustomerPriceBySku($sku)
     {
+        $date = date('Y-m-d');
+
         $customer = $this->customerSession->create();
         if ($customer->isLoggedIn()) {
             $collection = $this->priceRuleCollectionFactory->create();
             $collection->addFieldToFilter('customer_id', $customer->getId());
             $collection->addFieldToFilter('sku', $sku);
+            $collection->addFieldToFilter('start_date', ['lteq' => $date]);
+            $collection->addFieldToFilter('end_date', ['gteq' => $date]);
             return $collection;
         }
         return null;
