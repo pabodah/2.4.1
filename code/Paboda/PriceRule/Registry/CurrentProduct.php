@@ -8,6 +8,12 @@ namespace Paboda\PriceRule\Registry;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
 
+/**
+ * Class CurrentProduct
+ *
+ * Get current product details
+ *
+ */
 class CurrentProduct
 {
     /**
